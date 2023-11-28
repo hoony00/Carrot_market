@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hoonyDev/common/common.dart';
 import 'package:hoonyDev/common/dart/extension/num_duration_extension.dart';
 import 'package:hoonyDev/common/widget/animated_width_collapse.dart';
+import 'package:hoonyDev/screen/main/fab/w_floating_daangn_button.riverpod.dart';
 import 'package:hoonyDev/screen/main/s_main.dart';
 
 class FloatingDaangnButton extends ConsumerWidget {
@@ -12,8 +13,8 @@ class FloatingDaangnButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isExpanded = true;
-    final isSmall = true;
+    final isExpanded = ref.watch(floatingButtonIsExpandedProvider);
+    final isSmall = ref.watch(floatingButtonIsSmallProvider);
     return Stack(
       children: [
         AnimatedContainer(
@@ -50,29 +51,34 @@ class FloatingDaangnButton extends ConsumerWidget {
                   ),
                 ),
               ),
-              AnimatedContainer(
-                duration: duration,
-                height: 60,
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                decoration: BoxDecoration(
-                  color:
-                  isExpanded
-                      ? context.appColors.floatingActionLayer
-                      : const Color(0xffff791f),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AnimatedRotation(turns: isExpanded ? 0.125 : 0, duration: duration, child: const Icon(Icons.add)),
-                    AnimatedWidthCollapse(
-                        visible: !isSmall,
-                        duration: duration,
-                        child: '글쓰기'.text.make()),
-                  ],
-                ),
-              ).pOnly(bottom: MainScreenState.bottomNavigationBarHeight +
-                  context.viewPaddingBottom, right: 20),
+              Tap(
+                onTap: () {
+                  ref.read(floatingButtonIsExpandedProvider.notifier).state = !isExpanded;
+                },
+                child: AnimatedContainer(
+                  duration: duration,
+                  height: 60,
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  decoration: BoxDecoration(
+                    color:
+                    isExpanded
+                        ? context.appColors.floatingActionLayer
+                        : const Color(0xffff791f),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedRotation(turns: isExpanded ? 0.125 : 0, duration: duration, child: const Icon(Icons.add)),
+                      AnimatedWidthCollapse(
+                          visible: !isSmall,
+                          duration: duration,
+                          child: '글쓰기'.text.make()),
+                    ],
+                  ),
+                ).pOnly(bottom: MainScreenState.bottomNavigationBarHeight +
+                    context.viewPaddingBottom, right: 20),
+              ),
             ],
           ),
         ),

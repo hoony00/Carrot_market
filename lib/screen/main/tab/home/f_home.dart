@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeFragement extends StatefulWidget {
-  const HomeFragement({super.key});
+class HomeFragment extends ConsumerStatefulWidget {
+  const HomeFragment({super.key});
 
   @override
-  State<HomeFragement> createState() => _HomeFragementState();
+  ConsumerState createState() => _HomeFragmentState();
 }
 
-class _HomeFragementState extends State<HomeFragement> {
+class _HomeFragmentState extends ConsumerState<HomeFragment> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Placeholder();
   }
 }

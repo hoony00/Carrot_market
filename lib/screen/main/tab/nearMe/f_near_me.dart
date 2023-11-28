@@ -1,15 +1,17 @@
-import 'package:flutter/material.dart';
 
-class NearMeFragement extends StatefulWidget {
-  const NearMeFragement({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class NearMeFragment extends ConsumerStatefulWidget {
+  const NearMeFragment({super.key});
 
   @override
-  State<NearMeFragement> createState() => _NearMeFragementState();
+  ConsumerState createState() => _HomeFragmentState();
 }
 
-class _NearMeFragementState extends State<NearMeFragement> {
+class _HomeFragmentState extends ConsumerState<NearMeFragment> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Placeholder();
   }
 }
