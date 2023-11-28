@@ -1,3 +1,4 @@
+import 'package:hoonyDev/screen/main/fab/w_floating_daangn_button.dart';
 import 'package:hoonyDev/screen/main/tab/tab_item.dart';
 import 'package:hoonyDev/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
+  static const bottomNavigationBarHeight = 110.0;
 
   @override
   void initState() {
@@ -32,20 +34,24 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _handleBackPressed,
-      child: Scaffold(
-        extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
-        drawer: const MenuDrawer(),
-        body: Container(
-          color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
-          child: SafeArea(
-            bottom: !extendBody,
-            child: pages,
+    return Material(
+      child: Stack(
+        children: [
+          Scaffold(
+            extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
+            drawer: const MenuDrawer(),
+            body: Container(
+              color: context.appColors.seedColor.getMaterialColorValues[200],
+              padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+              child: SafeArea(
+                bottom: !extendBody,
+                child: pages,
+              ),
+            ),
+            bottomNavigationBar: _buildBottomNavigationBar(context),
           ),
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar(context),
+          FloatingDaangnButton(),
+        ],
       ),
     );
   }
@@ -77,6 +83,7 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
 
   Widget _buildBottomNavigationBar(BuildContext context) {
     return Container(
+      height: bottomNavigationBarHeight,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),

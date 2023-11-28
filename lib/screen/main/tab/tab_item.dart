@@ -1,14 +1,17 @@
 import 'package:hoonyDev/common/common.dart';
-import 'package:hoonyDev/screen/main/tab/favorite/f_favorite.dart';
+import 'package:hoonyDev/screen/main/tab/chat/f_chat.dart';
 import 'package:hoonyDev/screen/main/tab/home/f_home.dart';
 import 'package:flutter/material.dart';
+import 'package:hoonyDev/screen/main/tab/localLife/f_local_life.dart';
+import 'package:hoonyDev/screen/main/tab/my/f_my.dart';
+import 'package:hoonyDev/screen/main/tab/nearMe/f_near_me.dart';
 
 enum TabItem {
-  home(Icons.home, '홈', HomeFragment()),
-  localLife(Icons.holiday_village_outlined, '동네생활', FavoriteFragment(isShowBackButton: false)),
-  nearMe(Icons.pin_drop_outlined, '내 근처', FavoriteFragment(isShowBackButton: false)),
-  chat(Icons.chat_bubble_outline, '채팅', FavoriteFragment(isShowBackButton: false)),
-  my(Icons.person_outline_rounded, '나의 당근', FavoriteFragment(isShowBackButton: false));
+  home(Icons.home, '홈', HomeFragement()),
+  localLife(Icons.holiday_village_outlined, '동네생활', LocalLifeFragement()),
+  nearMe(Icons.pin_drop_outlined, '내 근처', NearMeFragement()),
+  chat(Icons.chat_bubble_outline, '채팅', ChatFragement()),
+  my(Icons.person_outline_rounded, '나의 당근', MyFragement());
 
   final IconData activeIcon;
   final IconData inActiveIcon;
